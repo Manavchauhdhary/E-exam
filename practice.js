@@ -28,6 +28,6 @@
 //var a=20;
 //console.log((a%2==0)?"even":"odd")
 
-arr=[2,4,5,6,7,8,9,10,56,68];
-let newarr=arr.map(num=>num*2).filter(num=>num>50)
-console.log(newarr)
+// arr=[2,4,5,6,7,8,9,10,56,68];
+// let newarr=arr.map(num=>num*2).filter(num=>num>50)
+// console.log(newarr)

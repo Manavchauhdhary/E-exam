@@ -1,6 +1,22 @@
-const express=require('express')
+const express=require("express")
+const mongoos=require("mongoose")
+const sessoncontroller=require("./controller/session-controller")
+const roleController=require("./controller/role-controller")
 const app = express()
-const sessoncontroler=require("./controller/session-controller")
+
+//middale ware
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
+//database
+mongoos.connect('mongodb://localhost:27017/ecom',function(err){
+  if(err){
+    console.log("db connecton fail......");
+    console.log(err);
+  }else{
+    console.log("db connected");
+  }
+})
 
 
 app.get("/",function(req,res){
@@ -8,19 +24,14 @@ app.get("/",function(req,res){
     res.end()
 })
 
-//app.get("/login",function(req,res){
-    //res.write("login")
-  //  res.end()
-//})
-//app.get("/signup",function(req,res){
-    //res.sendFile("./views/signup.html")
-  //  res.end()
-//})
 
-  app.get("/login",sessoncontroler.login)
-  app.get("/signup",sessoncontroler.signup)
 
+  app.get("/login",sessoncontroller.login)
+  app.get("/signup",sessoncontroller.signup)
+  app.post("/saveUser",sessoncontroller.saveUsers)
   
+//role
+app.post("/role",roleController.addRole)
 
 app.listen(3000,function(){
     console.log("server started on 3000")
