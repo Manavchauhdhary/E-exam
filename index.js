@@ -2,8 +2,11 @@ const express=require("express")
 const mongoose=require("mongoose")
 const sessonController=require("./controller/session-controller")
 const roleController=require("./controller/role-controller")
-const app = express()
+const userController = require("./controller/user-controller")
 
+
+
+const app = express()
 //middale ware
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -36,6 +39,15 @@ app.post("/roles",roleController.addRole)
 app.get("/roles",roleController.getAllRoles)
 app.delete("/roles/:roleId",roleController.deleteRole)
 app.put("/roles",roleController.updateRole)
+
+
+//user 
+app.post("/users",userController.addUser)
+app.get("/users",userController.getAllUsers)
+app.delete("/users/:userId",userController.deleteUser)
+
+
+
 
 app.listen(3000,function(){
     console.log("server started on 3000")
