@@ -5,6 +5,7 @@ const roleController=require("./controller/role-controller")
 const userController = require("./controller/user-controller")
 const courseController=require("./controller/course-controller")
 const queController=require("./controller/question-controller")
+const examController=require("./controller/exam-controller")
 
 
 
@@ -60,6 +61,13 @@ app.delete("/courses/:courseId",courseController.deleteCourse)
 app.post("/ques",queController.addQue)
 app.get("/ques",queController.getAllQue)
 app.delete("/ques/:queId",queController.deleteQue)
+
+//exam
+app.post("/exams",examController.addExam)
+app.get("/exams",examController.getAllExam)
+app.delete("/exams/:examId",examController.deleteExam)
+app.put("/exams",examController.updateExam)
+
 
 
 

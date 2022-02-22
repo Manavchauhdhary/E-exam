@@ -9,7 +9,14 @@ const examSchema = new mongoose.Schema({
         type:Number
     },
     isActive:{
-        type:
+        type:Boolean
     },
+    course : {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"course"
+}
 
 })
+
+const examModel = mongoose.model("exam",examSchema)
+module.exports = examModel
