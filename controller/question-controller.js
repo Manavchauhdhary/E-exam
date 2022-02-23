@@ -10,6 +10,10 @@ module.exports.addQue = function (req, res) {
     let option3 = req.body.option3
     let option4 = req.body.option4
     let answer = req.body.answer
+    let marks=req.body.marks
+    let createdDate=req.body.createdDate
+    let modifyDate=req.body.modifyDate
+    let modifyBy=req.body.modifyBy
 //encript
 
 
@@ -20,7 +24,11 @@ module.exports.addQue = function (req, res) {
         option2:option2,
         option3:option3,
         option4:option4,
-        answer:answer
+        answer:answer,
+        marks:marks,
+        createdDate:createdDate,
+        modifyDate:modifyDate,
+        modifyBy:modifyBy
     })
 
 
@@ -71,8 +79,13 @@ module.exports.updateQue = function(req,res){
     let option3 = req.body.option3
     let option4 = req.body.option4
     let answer = req.body.answer
+    let marks=req.body.marks
+    let createdDate=req.body.createdDate
+    let modifyDate=req.body.modifyDate
+    let modifyBy=req.body.modifyBy
     queModel.updateOne({_id:queId},{queName:queName,option1:option1,option2:option2,
-        option3:option3,option4:option4,answer:answer},function(err,data){
+        option3:option3,option4:option4,answer:answer,marks:marks,createdDate:createdDate,
+        modifyDate:modifyDate,modifyBy:modifyBy},function(err,data){
         if(err){
             res.json({msg:"Something went wrong!!!",status:-1,data:err})
         }else{

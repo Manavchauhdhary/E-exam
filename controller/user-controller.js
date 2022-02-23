@@ -3,27 +3,35 @@ const UserModel = require("../model/user-model")
 
 
 //add [ POST ]
-module.exports.addUser = function (req, res) {
+    module.exports.addUser = function (req, res) {
 
-    let firstName = req.body.firstName
-    let lastName=req.body.lastName
-    let email = req.body.email
-    let password = req.body.password
-    let gender=req.body.gender
-//encript
+        let firstName = req.body.firstName 
+        let lastName = req.body.lastName
+        let userName=req.body.userName
+        let email=req.body.email
+        let gender=req.body.gender
+        let mobileNo=req.body.mobileNo
+        let education=req.body.education
+        let dateOfBirth=req.body.dateOfBirth
+        let address=req.body.address
 
-let encPassword = bcrypt.hashSync(password,10)
-
-    let role = req.body.role
+       //encript
+       let encPassword = bcrypt.hashSync(password,10)
+       let role = req.body.role
 
 
     let user = new UserModel({
         firstName: firstName,
-        lastName:lastName,
-        email: email,
-        password: encPassword,
-        gender:gender,
-        role: role
+            lastName:lastName,
+            userName:userName,
+            email: email,
+            mobileNo:mobileNo,
+            education:education,
+            dateOfBirth:dateOfBirth,
+            password: encPassword,
+            gender:gender,
+            address:address,
+            role: role
     })
 
 
@@ -71,9 +79,16 @@ module.exports.updateUser = function(req,res){
     let userId = req.body.userId
     let firstName = req.body.firstName 
     let lastName = req.body.lastName
-    let email=req.body.email
+    let userName=req.body.userName
+    let gender=req.body.gender
+    let mobileNo=req.body.mobileNo
+    let education=req.body.education
+    let dateOfBirth=req.body.dateOfBirth
     let password=req.body.password
-    UserModel.updateOne({_id:userId},{firstName:firstName,lastName:lastName,email:email,password:password},function(err,data){
+    let address=req.body.address
+    UserModel.updateOne({_id:userId},{firstName:firstName,lastName:lastName,
+        userName:userName,gender:gender,mobileNo:mobileNo,education:education,
+        dateOfBirth:dateOfBirth,address:address, email:email,password:password},function(err,data){
         if(err){
             res.json({msg:"Something went wrong!!!",status:-1,data:err})
         }else{

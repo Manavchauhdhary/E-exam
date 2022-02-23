@@ -20,7 +20,20 @@ const queSchema = new mongoose.Schema({
     },
     answer:{
         type:String
+    },
+    marks:{
+        type:Number
+    },
+    createdDate:{
+        type:Date
+    },
+    modifyDate:{
+        type:Date
+    },
+    modifyBy:{
+        type:String
     }
+    
     
 })
 
