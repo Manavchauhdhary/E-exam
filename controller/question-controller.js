@@ -83,6 +83,7 @@ module.exports.updateQue = function(req,res){
     let createdDate=req.body.createdDate
     let modifyDate=req.body.modifyDate
     let modifyBy=req.body.modifyBy
+    
     queModel.updateOne({_id:queId},{queName:queName,option1:option1,option2:option2,
         option3:option3,option4:option4,answer:answer,marks:marks,createdDate:createdDate,
         modifyDate:modifyDate,modifyBy:modifyBy},function(err,data){

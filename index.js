@@ -6,6 +6,7 @@ const userController = require("./controller/user-controller")
 const courseController=require("./controller/course-controller")
 const queController=require("./controller/question-controller")
 const examController=require("./controller/exam-controller")
+const resultController=require("./controller/result-controller")
 
 
 
@@ -70,6 +71,10 @@ app.get("/exams",examController.getAllExam)
 app.delete("/exams/:examId",examController.deleteExam)
 app.put("/exams",examController.updateExam)
 
+//result
+app.post("/result",resultController.addresult)
+app.get("/result",resultController.getallresult)
+app.delete("/result",resultController.deleteresult)
 
 
 
