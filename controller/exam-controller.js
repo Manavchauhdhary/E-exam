@@ -58,10 +58,11 @@ module.exports.deleteExam = function(req,res){
 module.exports.updateExam = function(req,res){
 
     //update role set roleName = admin where roleId = 12121 
-    let examId = req.body.courseId 
-    let examName = req.body.courseName 
+    let examId = req.body.examId
+    let examName = req.body.examName 
+    let isActive = req.body.isActive
 
-    examModel.updateOne({_id:examId},{examName:courseName},function(err,data){
+    examModel.updateOne({_id:examId},{examName:examName,isActive:isActive},function(err,data){
         if(err){
             res.json({msg:"Something went wrong!!!",status:-1,data:err})
         }else{

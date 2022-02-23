@@ -61,4 +61,23 @@ module.exports.deleteQue = function(req,res){
         }
     })
 }
+module.exports.updateQue = function(req,res){
 
+    //update que s
+    let queId=req.body.queid
+    let queName = req.body.queName
+    let option1 = req.body.option1
+    let option2 = req.body.option2
+    let option3 = req.body.option3
+    let option4 = req.body.option4
+    let answer = req.body.answer
+    queModel.updateOne({_id:queId},{queName:queName,option1:option1,option2:option2,
+        option3:option3,option4:option4,answer:answer},function(err,data){
+        if(err){
+            res.json({msg:"Something went wrong!!!",status:-1,data:err})
+        }else{
+            res.json({msg:"updated...",status:200,data:data})
+        }
+    })
+
+}

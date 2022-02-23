@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 //database
-mongoose.connect('mongodb://localhost:27017/ecom',function(err){
+mongoose.connect('mongodb://localhost:27017/E-exam',function(err){
   if(err){
     console.log("db connecton fail......");
     console.log(err);
@@ -56,11 +56,13 @@ app.post("/login",userController.login)
 app.post("/courses",courseController.addCourse)
 app.get("/courses",courseController.getAllCourse)
 app.delete("/courses/:courseId",courseController.deleteCourse)
+app.put("/courses",courseController.updateCourse)
 
-//course
+//que
 app.post("/ques",queController.addQue)
 app.get("/ques",queController.getAllQue)
 app.delete("/ques/:queId",queController.deleteQue)
+app.put("/ques",queController.updateQue)
 
 //exam
 app.post("/exams",examController.addExam)

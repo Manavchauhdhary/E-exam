@@ -55,6 +55,21 @@ module.exports.deleteCourse = function(req,res){
         }
     })
 }
+module.exports.updateCourse = function(req,res){
 
+    //update role set roleName = admin where roleId = 12121 
+    let courseName = req.body.courseName
+    let isActive = req.body.isActive
+    let discription = req.body.discription
+
+    courseModel.updateOne({_id:courseId},{courseName:courseName,isActive:isActive,discription:discription,password:password},function(err,data){
+        if(err){
+            res.json({msg:"Something went wrong!!!",status:-1,data:err})
+        }else{
+            res.json({msg:"updated...",status:200,data:data})
+        }
+    })
+
+}
         
 

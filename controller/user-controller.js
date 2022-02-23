@@ -6,8 +6,10 @@ const UserModel = require("../model/user-model")
 module.exports.addUser = function (req, res) {
 
     let firstName = req.body.firstName
+    let lastName=req.body.lastName
     let email = req.body.email
     let password = req.body.password
+    let gender=req.body.gender
 //encript
 
 let encPassword = bcrypt.hashSync(password,10)
@@ -17,8 +19,10 @@ let encPassword = bcrypt.hashSync(password,10)
 
     let user = new UserModel({
         firstName: firstName,
+        lastName:lastName,
         email: email,
         password: encPassword,
+        gender:gender,
         role: role
     })
 
@@ -64,10 +68,12 @@ module.exports.deleteUser = function(req,res){
 module.exports.updateUser = function(req,res){
 
     //update role set roleName = admin where roleId = 12121 
-    let userId = req.body.roleId 
-    let userName = req.body.roleName 
-
-    UserModel.updateOne({_id:userId},{userName:roleName},function(err,data){
+    let userId = req.body.userId
+    let firstName = req.body.firstName 
+    let lastName = req.body.lastName
+    let email=req.body.email
+    let password=req.body.password
+    UserModel.updateOne({_id:userId},{firstName:firstName,lastName:lastName,email:email,password:password},function(err,data){
         if(err){
             res.json({msg:"Something went wrong!!!",status:-1,data:err})
         }else{
