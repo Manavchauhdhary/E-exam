@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended:true}))
 //database
 mongoose.connect('mongodb://localhost:27017/E-exam',function(err){
   if(err){
-    console.log("db connecton fail......");
+    console.log("db connection  fail......");
     console.log(err);
 
   }else{

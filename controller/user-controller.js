@@ -14,6 +14,7 @@ const UserModel = require("../model/user-model")
         let education=req.body.education
         let dateOfBirth=req.body.dateOfBirth
         let address=req.body.address
+        let password=req.body.password
 
        //encript
        let encPassword = bcrypt.hashSync(password,10)
@@ -21,7 +22,7 @@ const UserModel = require("../model/user-model")
 
 
     let user = new UserModel({
-        firstName: firstName,
+            firstName: firstName,
             lastName:lastName,
             userName:userName,
             email: email,
@@ -34,7 +35,7 @@ const UserModel = require("../model/user-model")
             role: role
     })
 
-
+    
 
     user.save(function (err, data) {
         if (err) {
@@ -86,9 +87,10 @@ module.exports.updateUser = function(req,res){
     let dateOfBirth=req.body.dateOfBirth
     let password=req.body.password
     let address=req.body.address
+    let role=req.body.role
     UserModel.updateOne({_id:userId},{firstName:firstName,lastName:lastName,
         userName:userName,gender:gender,mobileNo:mobileNo,education:education,
-        dateOfBirth:dateOfBirth,address:address, email:email,password:password},function(err,data){
+        dateOfBirth:dateOfBirth,address:address,password:password,role:role},function(err,data){
         if(err){
             res.json({msg:"Something went wrong!!!",status:-1,data:err})
         }else{
