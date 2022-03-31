@@ -39,6 +39,7 @@ const UserModel = require("../model/user-model")
 
     user.save(function (err, data) {
         if (err) {
+            console.log(err);
             res.json({ msg: "SMW", data: err, status: -1 })//-1  [ 302 404 500 ]
         } else {
             res.json({ msg: "signup done", data: data, status: 200 })//http status code 
@@ -52,9 +53,9 @@ module.exports.getAllUsers = function (req, res) {
 
     UserModel.find().populate("role").exec(function (err, data) {
         if (err) {
-            res.json({ msg: "SMW", data: err, status: -1 })//-1  [ 302 404 500 ]
+            res.json({ msg: "Smw", data: err, status: -1 })//-1  [ 302 404 500 ]
         } else {
-            res.json({ msg: "users ret...", data: data, status: 200 })//http status code 
+            res.json({ msg: "user data add successfully", data: data, status: 200 })//http status code 
         }
     })
 }
