@@ -108,7 +108,7 @@ module.exports.login = function(req,res){
 
     let isCorrect = false; 
 
-    UserModel.findOne({email:param_email},function(err,data){
+    UserModel.findOne({email:param_email}).populate('role').exec(function(err,data){
         if(data){
             let ans =  bcrypt.compareSync(param_password,data.password)
             if(ans == true){
@@ -123,4 +123,15 @@ module.exports.login = function(req,res){
         }
     })
 
+}
+
+module.exports.getOneUser = function(req,res){
+    let userId = req.params.userId
+    UserModel.findById(userId).populate('role').exec(function(err,data){
+        if(err){
+            res.json({ msg: "user not find...", data: req.body, status: -1 })
+        }else{
+            res.json({ msg: "one user get", data: data, status: 200 }) 
+        }
+    })
 }

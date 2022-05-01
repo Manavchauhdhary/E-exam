@@ -34,6 +34,9 @@ app.get("/",function(req,res){
     res.end()
 })
 
+//forget password
+ app.post("/forgetpassword",sessonController.mailLinkToResetPassword)
+ app.post('/reset',sessonController.resetPassword)
 
 
   app.get("/login",sessonController.login)
@@ -52,7 +55,7 @@ app.post("/users",userController.addUser)
 app.get("/users",userController.getAllUsers)
 app.delete("/users/:userId",userController.deleteUser)
 app.put("/users",userController.updateUser)
-
+app.get("/users/:userId",userController.getOneUser)
 app.post("/login",userController.login)
 
 //course

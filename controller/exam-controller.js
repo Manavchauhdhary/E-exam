@@ -8,13 +8,15 @@ module.exports.addExam = function (req, res) {
     let totalQuestion = req.body.totalQuestion
     let isActive = req.body.isActive
     let course = req.body.course
+    let author = req.body.author
 
 
     let exam = new examModel({
         examName: examName,
         totalQuestion: totalQuestion,
         isActive: isActive,
-        course: course
+        course: course,
+        author:author
     })
 
 
