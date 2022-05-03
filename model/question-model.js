@@ -19,7 +19,8 @@ const queSchema = new mongoose.Schema({
         type:String
     },
     answer:{
-        type:String
+        type:String,
+        required:true
     },
     marks:{
         type:Number

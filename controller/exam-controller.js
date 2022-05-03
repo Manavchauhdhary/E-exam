@@ -9,6 +9,8 @@ module.exports.addExam = function (req, res) {
     let isActive = req.body.isActive
     let course = req.body.course
     let author = req.body.author
+    let totalMarks = req.body.totalMarks
+    let examTime = req.body.examTime
 
 
     let exam = new examModel({
@@ -16,7 +18,9 @@ module.exports.addExam = function (req, res) {
         totalQuestion: totalQuestion,
         isActive: isActive,
         course: course,
-        author:author
+        totalMarks:totalMarks,
+        author:author,
+        examTime:examTime
     })
 
 
@@ -61,8 +65,10 @@ module.exports.updateoneExam = function(req,res){
     let totalQuestion=req.body.totalQuestion
     let isActive = req.body.isActive
     let course = req.body.course
+    let totalMarks =  req.body.totalMarks
+    let examTime = req.body.examTime
 
-    examModel.findByIdAndUpdate(examId,{examName:examName,totalQuestion:totalQuestion,course:course,isActive:isActive},function (err, data) {
+    examModel.findByIdAndUpdate(examId,{examName:examName,totalQuestion:totalQuestion,course:course,totalMarks:totalMarks,isActive:isActive,examTime:examTime},function (err, data) {
             if (err) {
                 res.json({ msg: "SMW", status: -1, data: req.body })
             }

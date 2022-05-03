@@ -97,20 +97,38 @@ module.exports.updateQue = function(req,res){
 
 }
 
-// module.exports.addQuestionToExam = function(req,res){
-//     var examId = req.params.examId
-//     var exam = examModel.findById(examId)
-//     var question = new queModel({queName:req.body.queName,option1:req.body.option1,
-//         option2:req.body.option2,option3:req.body.option3,option4:req.body.option4})
+module.exports.addQuestiontoExam = function(req,res){
+    var examId = req.params.examId
+    var exam = examModel.findById(req.params.examId);
+    var question = new QuestionModel({
+        questionName:req.body.questionName,
+        option1:req.body.option1,
+        option2:req.body.option2,
+        option3:req.body.option3,
+        option4:req.body.option4,
+        answer:req.body.answer,
+        marks:req.body.marks
+    });
+    exam.findOneAndUpdate({_id:examId},{$push:{questions:question}},function(err,data){
+        if(err){
+            res.json({msg:"Something Went Wrong!",status:-1,data:data})
+        }
+        else{
+            res.json({msg:"Exams of subject",status:200,data:data})
+        }
+    })
+    question.save();
+};
 
-//         exam.findOneAndUpdate({_id:examId},{$push:{questions:question}},function (err,data){
-
-//             if(err){
-//                 res.json({msg:"Something went wrong!!!",status:-1,data:err})
-//             }else{
-//                 res.json({msg:"updated...",status:200,data:data})
-//             }
-//         })
-
-//         question.save()
-// }
+module.exports.listOneQuestion = function(req,res){
+    // let examId = req.params.examId
+    let queId = req.params.queId
+    QuestionModel.findById(queId,function(err,data){
+        if(err){
+            res.json({msg:"SWW",status:-1,data:req.body})
+        }
+        else{
+            res.json({msg:"One Question...",status:200,data:data})
+        }
+    })
+}

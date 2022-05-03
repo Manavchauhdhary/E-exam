@@ -17,7 +17,7 @@ module.exports.addresult=function(req,res){
         user:user,
         marks:marks,
         attendQue:attendQue,
-        examDate:attendQue
+        examDate:examDate
     })
 
     result.save(function(err,data) {
@@ -44,6 +44,31 @@ module.exports.getallresult=function(req,res){
 
     })
 }
+module.exports.listOneResult = function(req,res){
+    let resultId = req.params.resultId
+    resultModel.findById(resultId).populate('exam').populate('user').exec(function(err,data){
+        if(err){
+            res.json({msg:"SWW",status:-1,data:req.body})
+        }
+        else{
+            res.json({msg:"One Result...",status:200,data:data})
+        }
+    })
+}
+
+
+module.exports.listAllResultsOfUser = function(req,res){
+    let userId = req.params.userId
+    resultModel.find({user:userId}).populate({path:'exam',populate:{path:'course',model:'courses'}}).populate({path:'user',populate:{path:'role',model:"roles"}}).exec(function(err,data){
+        if(err){
+            res.json({msg:"Something Went Wrong!",status:-1,data:err})
+        }
+        else{
+            res.json({msg:"All Results of a User...",status:200,data:data})
+        }
+    }) 
+}
+
 
 module.exports.deleteresult = function(req,res){
     //params userid 

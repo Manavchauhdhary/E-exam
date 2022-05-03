@@ -15,17 +15,22 @@ const examSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"course"
 },
+    examTime:{
+       type:Number
+},
     author : {
         type:mongoose.Schema.Types.ObjectId,
         ref:"user"
-    }
-
-    // questions:[
-    //     {
-    //      type:mongoose.Schema.type.ObjectId,
-    //      ref:"question"
-    //     }
-    // ]
+    },
+    totalMarks:{
+        type:Number
+    },
+    questions:[
+        {
+            type:mongoose.Types.ObjectId,
+            ref:"questions"
+        }
+    ]
 
 })
 

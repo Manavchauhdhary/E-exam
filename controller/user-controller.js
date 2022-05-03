@@ -36,8 +36,8 @@ const UserModel = require("../model/user-model")
     })
 
     
-
-    user.save(function (err, data) {
+    // await user.populate('roles');
+     user.save(function (err, data) {
         if (err) {
             console.log(err);
             res.json({ msg: "SMW", data: err, status: -1 })//-1  [ 302 404 500 ]

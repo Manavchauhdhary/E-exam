@@ -20,9 +20,9 @@ const resultSchema=new mongoose.Schema({
         type:String
     },
     examDate:{
-        type:String
+        type:Date
     }
 })
 
-const resultModel = mongoose.model("result",resultSchema)
+const resultModel = mongoose.model("results",resultSchema)
 module.exports = resultModel 

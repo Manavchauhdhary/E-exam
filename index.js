@@ -8,7 +8,7 @@ const courseController=require("./controller/course-controller")
 const queController=require("./controller/question-controller")
 const examController=require("./controller/exam-controller")
 const resultController=require("./controller/result-controller")
-
+const answerController=require("./controller/answer-controller")
 
 
 const app = express()
@@ -58,20 +58,28 @@ app.put("/users",userController.updateUser)
 app.get("/users/:userId",userController.getOneUser)
 app.post("/login",userController.login)
 
+//answers
+app.post('/answers',answerController.addAnswer)
+app.get('/answers',answerController.listAllAnswer)
+app.get('/answers/:answerId',answerController.listOneAnswer)
+
 //course
 app.post("/courses",courseController.addCourse)
 app.get("/courses",courseController.getAllCourse)
+app.get('/courses/:courseId',courseController.listOneCourse)
 app.delete("/courses/:courseId",courseController.deleteCourse)
 app.put("/courses",courseController.updateCourse)
+app.put('/courses/:courseId',courseController.updateCourse)
 app.get('/courses/:courseId/exams',examController.listAllExamsOfSubject)
 
 
 //que
-app.post("/ques",queController.addQue)
-app.get("/ques",queController.getAllQue)
-app.delete("/ques/:queId",queController.deleteQue)
-app.put("/ques",queController.updateQue)
-// app.post("/exams/:examId/questions",queController.addQuestionToExam)
+app.post("/ques/:examId/questions",queController.addQue)
+app.get("/ques/:examId/questions",queController.getAllQue)
+app.get('/exams/:examId/questions/:questionId',queController.listOneQuestion)
+app.delete("/ques/:examId/questions/:queId",queController.deleteQue)
+app.put("/ques/:examId/questions/:queId",queController.updateQue)
+
 
 
 //exam
@@ -83,9 +91,11 @@ app.put("/exams",examController.updateExam)
 app.put("/exams/:examId",examController.updateoneExam)
 
 //result
-app.post("/result",resultController.addresult)
-app.get("/result",resultController.getallresult)
-app.delete("/result",resultController.deleteresult)
+app.post("/results",resultController.addresult)
+app.get("/results",resultController.getallresult)
+app.get('/result/:resultId',resultController.listOneResult)
+app.delete("/results",resultController.deleteresult)
+app.get('/results/:userId',resultController.listAllResultsOfUser)
 
 
 

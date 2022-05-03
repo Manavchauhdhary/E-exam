@@ -30,13 +30,25 @@ module.exports.addCourse = function (req, res) {
 
 }
 //list
+module.exports.listOneCourse = function(req,res){
+    let courseId = req.params.courseId
+    CourseModel.findById(courseId,function(err,data){
+        if(err){
+            res.json({msg:"SWW",status:-1,data:req.body})
+        }
+        else{
+            res.json({msg:"One Subject...",status:200,data:data})
+        }
+    })
+}
+
 module.exports.getAllCourse = function (req, res) {
 
     CourseModel.find(function (err, data) {
         if (err) {
             res.json({ msg: "SMW", data: err, status: -1 })//-1  [ 302 404 500 ]
         } else {
-            res.json({ msg: "users ret...", data: data, status: 200 })//http status code 
+            res.json({ msg: "get all course...", data: data, status: 200 })//http status code 
         }
     })
 }
