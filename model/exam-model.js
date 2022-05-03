@@ -28,7 +28,7 @@ const examSchema = new mongoose.Schema({
     questions:[
         {
             type:mongoose.Types.ObjectId,
-            ref:"questions"
+            ref:"question"
         }
     ]
 

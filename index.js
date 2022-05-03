@@ -74,11 +74,12 @@ app.get('/courses/:courseId/exams',examController.listAllExamsOfSubject)
 
 
 //que
-app.post("/ques/:examId/questions",queController.addQue)
-app.get("/ques/:examId/questions",queController.getAllQue)
 app.get('/exams/:examId/questions/:questionId',queController.listOneQuestion)
+app.post("/ques/:examId/questions",queController.addQuestiontoExam)
+app.get("/ques/:examId/questions",queController.listAllQuestionsOfExam)
 app.delete("/ques/:examId/questions/:queId",queController.deleteQue)
 app.put("/ques/:examId/questions/:queId",queController.updateQue)
+
 
 
 

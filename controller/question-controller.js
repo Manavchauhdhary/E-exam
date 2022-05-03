@@ -56,11 +56,22 @@ module.exports.getAllQue = function (req, res) {
     })
 }
 
+module.exports.listAllQuestionsOfExam = function(req,res){
+    var examId = req.params.examId
+    examModel.findById(examId,function(err,data){
+        if(err){
+            res.json({msg:"Something Wrong!",status:-1,data:err})
+        }
+        else{
+            res.json({msg:"Questions...",status:200,data:data})
+        }
+    })
+}
 
 //delete
 module.exports.deleteQue = function(req,res){
     //params userid 
-    let queId = req.params.userId //postman -> userid 
+    let queId = req.params.queId //postman -> userid 
 
     queModel.deleteOne({_id:queId},function (err, data) {
         if (err) {
@@ -100,8 +111,8 @@ module.exports.updateQue = function(req,res){
 module.exports.addQuestiontoExam = function(req,res){
     var examId = req.params.examId
     var exam = examModel.findById(req.params.examId);
-    var question = new QuestionModel({
-        questionName:req.body.questionName,
+    var question = new queModel({
+        queName:req.body.queName,
         option1:req.body.option1,
         option2:req.body.option2,
         option3:req.body.option3,
@@ -122,8 +133,8 @@ module.exports.addQuestiontoExam = function(req,res){
 
 module.exports.listOneQuestion = function(req,res){
     // let examId = req.params.examId
-    let queId = req.params.queId
-    QuestionModel.findById(queId,function(err,data){
+    let queId = req.params.questionId
+    queModel.findById(queId,function(err,data){
         if(err){
             res.json({msg:"SWW",status:-1,data:req.body})
         }

@@ -49,7 +49,7 @@ module.exports.getAllExam = function (req, res) {
 
 module.exports.listoneExam = function(req,res){
     let examId = req.params.examId
-    examModel.findById(examId).populate('course').exec(function(err,data){
+    examModel.findById(examId).populate('course').populate('questions').exec(function(err,data){
         if(err){
             res.json({msg:"smw",status:-1,data:err})
         }
