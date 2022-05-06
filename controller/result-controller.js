@@ -59,7 +59,7 @@ module.exports.listOneResult = function(req,res){
 
 module.exports.listAllResultsOfUser = function(req,res){
     let userId = req.params.userId
-    resultModel.find({user:userId}).populate({path:'exam',populate:{path:'course',model:'courses'}}).populate({path:'user',populate:{path:'role',model:"roles"}}).exec(function(err,data){
+    resultModel.find({user:userId}).populate({path:'exam',populate:{path:'course',model:'course'}}).populate({path:'user',populate:{path:'role',model:"role"}}).exec(function(err,data){
         if(err){
             res.json({msg:"Something Went Wrong!",status:-1,data:err})
         }

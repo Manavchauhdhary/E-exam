@@ -94,7 +94,7 @@ app.put("/exams/:examId",examController.updateoneExam)
 //result
 app.post("/results",resultController.addresult)
 app.get("/results",resultController.getallresult)
-app.get('/result/:resultId',resultController.listOneResult)
+// app.get('/result/:resultId',resultController.listOneResult)
 app.delete("/results",resultController.deleteresult)
 app.get('/results/:userId',resultController.listAllResultsOfUser)
 

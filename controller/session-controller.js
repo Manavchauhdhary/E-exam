@@ -46,7 +46,7 @@ module.exports.mailLinkToResetPassword = function (req, res) {
                     secure: true,
                     auth: {
                         user:'manavchaudhary070@gmail.com',
-                        pass: 'Manav@0459'
+                        pass: ''
                     }
                 });
                 var mailOptions = {
